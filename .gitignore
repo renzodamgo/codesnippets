@@ -99,7 +99,11 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
-
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 # Visual Studio profiler
 *.psess
 *.vsp
