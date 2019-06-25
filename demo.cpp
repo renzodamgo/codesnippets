@@ -5,17 +5,20 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
+typedef map<string, Columna *> mapita;
 using namespace std;
 class Dataframe {
+
 private:
   map<string, Columna *> colmap;
+  mapita *s;
   vector<Fila *> filas;
 
 public:
   Dataframe(){};
   ~Dataframe();
   void cargarArchivo(string nombre, int ncol) {
+    s = new mapita();
     vector<string> colnames;
     ifstream data;
     data.open(nombre);
@@ -26,6 +29,7 @@ public:
     for (int j = 0; j < ncol; ++j) {
       getline(ss, line, ',');
       colmap.insert(pair<string, Columna *>(line, new Columna()));
+      s->insert(pair<string, Columna *>(line, new Columna()));
       colnames.push_back(line);
     };
 
@@ -40,7 +44,8 @@ public:
   }
   void mostrarcolumnas() {
     map<string, Columna *>::iterator itr;
-    for (itr = colmap.begin(); itr != colmap.end(); ++itr) {
+    // mapita::iterator itr;
+    for (itr = s->begin(); itr != s->end(); ++itr) {
       cout << itr->first << '\t';
     }
   }
